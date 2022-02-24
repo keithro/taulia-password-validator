@@ -6,57 +6,61 @@ import logo from '../logo.svg';
 const Form = () => {
   const [ inputValue, setInputValue ] = useState('');
   const [ inputType, setInputType ] = useState('password');
-  const [ email, setEmail ] = useState('');
+  // TODO: REMOVE STARTING EMAIL ADDRESS IN useState()
+  const [ email, setEmail ] = useState('bob@gmail.com');
 
   // Make AJAX request or take email address from props if request made in App
   useEffect(() => {
     console.log('making API call');
 
-    // const fetchData = async () => {
-    //   try {
-    //     const res = await fetch('https://run.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813');
-    //     const data = await res.json();
-  
-    //     console.log(data);
-    //     // setEmail(data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
-
-    // fetchData();
   },[]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   }
 
+  // Change input type to toggle show/hide password
   const handleShowPassword = (event) => {
     const type = event.target.checked ? 'text' : 'password';
     setInputType(type);
   }
-  // const isCorrectLength = check if input.length between 8 - 72
-  const isCorrectLength = inputValue.length >= 8 && inputValue.length <= 72;
-  console.log(isCorrectLength);
-  // const hasUppercase = check for 1 uppercase char
-  // const hasLowercase = 
-  // const hasNumber = 
-  // const notEmailMatch = Check if typed password includes part email
 
+  // Check if password meets requirements
+
+  const checkIfContainsEmail = ()=> {
+    // Want TRUE only after length > 0 (alternatively: could check only after pw is correct length)
+    if(!inputValue.length) return false;
+
+    const end = email.indexOf('@');
+    const emailSubStr = email.slice(0,end);
+    console.log(email, '& sub string: ', emailSubStr);// TODO: DELETE ME
+
+    // return TRUE if does not include email or emailSubStr
+    // return FALSE if it does include email or emailSubStr
+    return !inputValue.includes(email) && !inputValue.includes(emailSubStr);
+    // return !inputValue.includes(emailSubStr);
+  }
+
+  const isCorrectLength = inputValue.length >= 8 && inputValue.length <= 72;
+  const hasUppercase = /[A-Z]/.test(inputValue);
+  const hasLowercase = /[a-z]/.test(inputValue);
+  const hasNumber = /[0-9]/.test(inputValue);
+  const notEmail = checkIfContainsEmail();
+
+  console.log(notEmail);// TODO: DELETE ME
 
   // BONUS: 
   // const isValidPassword = could return an obj from one function above and then use:
   //    Object.values(input).every(test => !!test);
   // if isValidPassword = true: drop confetti and display congrats message
+  //  OR
+  // onBlur = () => {
+  //   if(isValidPassord) ...confetti
+  // }
 
 
-  // Input Form:
-  // How to toggle show/hide password? State for input type (password/text), toggle onClick?
-
-  // In form validation message display (separate component?):
   // All 5 requirements with dynamic class to add strikethrough
   // Strikethrough animation from left to right
-
 
   return (
     <div className='formContainer'>
@@ -75,10 +79,10 @@ const Form = () => {
       <div className='requirements'>
         <ul>
           <p className={isCorrectLength ? 'strike-out' : ''}>8-72 Characters</p>
-          <p>1 Lowercase Character</p>
-          <p>Should Not Match Your Email Address</p>
-          <p>1 Uppercase Character</p>
-          <p>1 Number</p>
+          <p className={hasLowercase ? 'strike-out' : ''}>1 Lowercase Character</p>
+          <p className={notEmail ? 'strike-out' : ''}>Should Not Match Your Email Address</p>
+          <p className={hasUppercase ? 'strike-out' : ''}>1 Uppercase Character</p>
+          <p className={hasNumber ? 'strike-out' : ''}>1 Number</p>
         </ul>
       </div>
     </div>
