@@ -6,13 +6,25 @@ import logo from '../logo.svg';
 const Form = () => {
   const [ inputValue, setInputValue ] = useState('');
   const [ inputType, setInputType ] = useState('password');
-  // TODO: REMOVE STARTING EMAIL ADDRESS IN useState()
-  const [ email, setEmail ] = useState('bob@gmail.com');
+  const [ email, setEmail ] = useState('');
 
   // Make AJAX request or take email address from props if request made in App
   useEffect(() => {
     console.log('making API call');
 
+    const fetchData = async () => {
+      try {
+        const res = await fetch('https://run.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813');
+        const data = await res.json();
+  
+        console.log(data); // TODO: DELETE ME
+        setEmail(data.user.email);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchData();
   },[]);
 
   const handleInputChange = (event) => {
@@ -28,7 +40,7 @@ const Form = () => {
   // Check if password meets requirements
 
   const checkIfContainsEmail = ()=> {
-    // Want TRUE only after length > 0 (alternatively: could check only after pw is correct length)
+    // Want to check only after length > 0 (alternatively: could check only after pw is correct length)
     if(!inputValue.length) return false;
 
     const end = email.indexOf('@');
@@ -36,7 +48,6 @@ const Form = () => {
     console.log(email, '& sub string: ', emailSubStr);// TODO: DELETE ME
 
     // return TRUE if does not include email or emailSubStr
-    // return FALSE if it does include email or emailSubStr
     return !inputValue.includes(email) && !inputValue.includes(emailSubStr);
     // return !inputValue.includes(emailSubStr);
   }
@@ -78,11 +89,13 @@ const Form = () => {
 
       <div className='requirements'>
         <ul>
-          <p className={isCorrectLength ? 'strike-out' : ''}>8-72 Characters</p>
-          <p className={hasLowercase ? 'strike-out' : ''}>1 Lowercase Character</p>
-          <p className={notEmail ? 'strike-out' : ''}>Should Not Match Your Email Address</p>
-          <p className={hasUppercase ? 'strike-out' : ''}>1 Uppercase Character</p>
-          <p className={hasNumber ? 'strike-out' : ''}>1 Number</p>
+          <li className={hasLowercase ? 'strike-out' : ''}>1 Lowercase Character</li>
+          <li className={isCorrectLength ? 'strike-out' : ''}>8-72 Characters</li>
+          <li className={notEmail ? 'strike-out' : ''}>Should Not Match Your Email Address</li>
+        </ul>
+        <ul>
+          <li className={hasUppercase ? 'strike-out' : ''}>1 Uppercase Character</li>
+          <li className={hasNumber ? 'strike-out' : ''}>1 Number</li>
         </ul>
       </div>
     </div>

@@ -1,4 +1,4 @@
 
-.requirements p.strike-out {
+.requirements li.strike-out {
   text-decoration: line-through;
 }
