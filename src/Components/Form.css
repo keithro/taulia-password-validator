@@ -1,4 +1,77 @@
+/* .form-container,
+.form-container * {
+  border: 1px solid pink;
+} */
 
-.requirements li.strike-out {
+.form-container {
+  width: 600px;
+}
+
+.form-container .logo {
+  height: 60px;
+  display: block;
+  margin: 0 auto 20px auto;
+
+}
+
+/* .form-container label[for="password"] {
+  margin-bottom: 10px;
+} */
+
+.password-container {
+  margin-top: 10px;
+  display: flex;
+}
+
+.password-container #password {
+  font-size: 16px;
+  padding: 10px 5px;
+  width: 520px;
+  border: 1px solid #999999;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.password-container .checkbox-container {
+  padding: 10px 5px;
+  width: 80px;
+  background-color: #f7f7f7;
+  border: 1px solid #999999;
+  border-left: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.checkbox-container > * {
+  margin-left: 5px;
+}
+
+.requirements-list {
+  margin-bottom: 20px;
+  list-style: none;
+  list-style-position: inside;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.requirements-list li {
+  /* flex: 0 0 50%; */
+  flex: 1 1 300px;
+  margin-top: 10px;
+}
+
+.requirements-list li::before {
+  background-color: #ee964a;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  margin-right: 5px;
+  /* margin-bottom: 2px; */
+  height: 8px;
+  width: 8px;
+}
+
+.requirements-list li.strike-out {
   text-decoration: line-through;
 }

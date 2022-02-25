@@ -17,7 +17,7 @@ const Form = () => {
         const res = await fetch('https://run.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813');
         const data = await res.json();
   
-        console.log(data); // TODO: DELETE ME
+        // console.log(data); // TODO: DELETE ME
         setEmail(data.user.email);
       } catch (error) {
         console.log(error);
@@ -38,14 +38,14 @@ const Form = () => {
   }
 
   // Check if password meets requirements
-
   const checkIfContainsEmail = ()=> {
-    // Want to check only after length > 0 (alternatively: could check only after pw is correct length)
+    // Want to check only after length > 0 
+    // alternatively: could check only after pw is correct length
     if(!inputValue.length) return false;
 
     const end = email.indexOf('@');
     const emailSubStr = email.slice(0,end);
-    console.log(email, '& sub string: ', emailSubStr);// TODO: DELETE ME
+    // console.log(email, '& sub string: ', emailSubStr);// TODO: DELETE ME
 
     // return TRUE if does not include email or emailSubStr
     return !inputValue.includes(email) && !inputValue.includes(emailSubStr);
@@ -74,28 +74,28 @@ const Form = () => {
   // Strikethrough animation from left to right
 
   return (
-    <div className='formContainer'>
+    <div className='form-container'>
       <img src={logo} className="logo" alt="logo" />
 
       <form>
         <label for='password'>Password</label>
-        <div>
+        <div className='password-container'>
           <input type={inputType} name='password' id='password' value={inputValue} onChange={handleInputChange}/>
 
-          <input type='checkbox' name='show' id='show-cb' onChange={handleShowPassword}/>
-          <label for='show'>Show</label>
+          <div className='checkbox-container'>
+            <input type='checkbox' name='show' id='show-cb' onChange={handleShowPassword}/>
+            <label for='show'>Show</label>
+          </div>
         </div>
       </form>
 
       <div className='requirements'>
-        <ul>
-          <li className={hasLowercase ? 'strike-out' : ''}>1 Lowercase Character</li>
+        <ul className='requirements-list'>
           <li className={isCorrectLength ? 'strike-out' : ''}>8-72 Characters</li>
-          <li className={notEmail ? 'strike-out' : ''}>Should Not Match Your Email Address</li>
-        </ul>
-        <ul>
           <li className={hasUppercase ? 'strike-out' : ''}>1 Uppercase Character</li>
+          <li className={hasLowercase ? 'strike-out' : ''}>1 Lowercase Character</li>
           <li className={hasNumber ? 'strike-out' : ''}>1 Number</li>
+          <li className={notEmail ? 'strike-out' : ''}>Should Not Match Your Email Address</li>
         </ul>
       </div>
     </div>
