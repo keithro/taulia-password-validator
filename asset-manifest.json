@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/taulia-password-validator/static/css/main.17f1467e.css",
-    "main.js": "/taulia-password-validator/static/js/main.a61cbda3.js",
+    "main.css": "/taulia-password-validator/static/css/main.8dc86b1b.css",
+    "main.js": "/taulia-password-validator/static/js/main.d38ce33a.js",
     "static/media/logo.svg": "/taulia-password-validator/static/media/logo.2c81faaee8d8b1f584a021340bb2f839.svg",
     "index.html": "/taulia-password-validator/index.html",
-    "main.17f1467e.css.map": "/taulia-password-validator/static/css/main.17f1467e.css.map",
-    "main.a61cbda3.js.map": "/taulia-password-validator/static/js/main.a61cbda3.js.map"
+    "main.8dc86b1b.css.map": "/taulia-password-validator/static/css/main.8dc86b1b.css.map",
+    "main.d38ce33a.js.map": "/taulia-password-validator/static/js/main.d38ce33a.js.map"
   },
   "entrypoints": [
-    "static/css/main.17f1467e.css",
-    "static/js/main.a61cbda3.js"
+    "static/css/main.8dc86b1b.css",
+    "static/js/main.d38ce33a.js"
   ]
 }
