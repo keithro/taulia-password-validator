@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import RequirementsList from '../RequirementsList/RequirementsList';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import './Form.css';
 import logo from '../../logo.svg';
@@ -11,7 +12,7 @@ const Form = () => {
 
   // Make AJAX request on page load
   useEffect(() => {
-    const url = 'https://un.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813';
+    const url = 'https://run.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813';
 
     const fetchData = async () => {
       try {
@@ -37,7 +38,6 @@ const Form = () => {
     setInputType(type);
   }
 
-  // Check if password meets requirements
   const checkIfContainsEmail = ()=> {
     // Check only after length > 0 
     if(!inputValue.length) return false;
@@ -77,25 +77,13 @@ const Form = () => {
         </div>
       </form>
 
-      <div className="requirements">
-        <ul className="requirements-list">
-          <li className={isCorrectLength ? "strike-out" : ""}>
-            <p>8-72 Characters</p>
-          </li>
-          <li className={hasUppercase ? "strike-out" : ""}>
-            <p>1 Uppercase Character</p>
-          </li>
-          <li className={hasLowercase ? "strike-out" : ""}>
-            <p>1 Lowercase Character</p>
-          </li>
-          <li className={hasNumber ? "strike-out" : ""}>
-            <p>1 Number</p>
-          </li>
-          <li className={notEmail ? "strike-out" : ""}>
-            <p>Should Not Match Your Email Address</p>
-          </li>
-        </ul>
-      </div>
+      <RequirementsList
+        isCorrectLength={isCorrectLength}
+        hasUppercase={hasUppercase}
+        hasLowercase={hasLowercase}
+        hasNumber={hasNumber}
+        notEmail={notEmail}
+      />
 
       {!isError || <ErrorMessage />}
     </div>
