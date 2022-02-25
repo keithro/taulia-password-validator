@@ -8,16 +8,15 @@ const Form = () => {
   const [ inputType, setInputType ] = useState('password');
   const [ email, setEmail ] = useState('');
 
-  // Make AJAX request or take email address from props if request made in App
+  // Make AJAX request on page load
   useEffect(() => {
-    console.log('making API call');
+    const url = 'https://run.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813';
 
     const fetchData = async () => {
       try {
-        const res = await fetch('https://run.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813');
+        const res = await fetch(url);
         const data = await res.json();
   
-        // console.log(data); // TODO: DELETE ME
         setEmail(data.user.email);
       } catch (error) {
         console.log(error);
@@ -39,17 +38,14 @@ const Form = () => {
 
   // Check if password meets requirements
   const checkIfContainsEmail = ()=> {
-    // Want to check only after length > 0 
-    // alternatively: could check only after pw is correct length
+    // Check only after length > 0 
     if(!inputValue.length) return false;
 
     const end = email.indexOf('@');
     const emailSubStr = email.slice(0,end);
-    // console.log(email, '& sub string: ', emailSubStr);// TODO: DELETE ME
 
     // return TRUE if does not include email or emailSubStr
     return !inputValue.includes(email) && !inputValue.includes(emailSubStr);
-    // return !inputValue.includes(emailSubStr);
   }
 
   const isCorrectLength = inputValue.length >= 8 && inputValue.length <= 72;
@@ -58,48 +54,54 @@ const Form = () => {
   const hasNumber = /[0-9]/.test(inputValue);
   const notEmail = checkIfContainsEmail();
 
-  console.log(notEmail);// TODO: DELETE ME
-
-  // BONUS: 
-  // const isValidPassword = could return an obj from one function above and then use:
-  //    Object.values(input).every(test => !!test);
-  // if isValidPassword = true: drop confetti and display congrats message
-  //  OR
-  // onBlur = () => {
+  // BONUS: onBlur={handleFocusChange}
+  //  handleFocusChange = () => {
   //   if(isValidPassord) ...confetti
   // }
 
-
-  // All 5 requirements with dynamic class to add strikethrough
-  // Strikethrough animation from left to right
-
   return (
-    <div className='form-container'>
+    <div className="form-container">
       <img src={logo} className="logo" alt="logo" />
 
       <form>
-        <label for='password'>Password</label>
-        <div className='password-container'>
-          <input type={inputType} name='password' id='password' value={inputValue} onChange={handleInputChange}/>
+        <label for="password">Password</label>
+        <div className="password-container">
+          <input
+            type={inputType}
+            name="password"
+            id="password"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
 
-          <div className='checkbox-container'>
-            <input type='checkbox' name='show' onChange={handleShowPassword}/>
-            <label for='show'>Show</label>
+          <div className="checkbox-container">
+            <input type="checkbox" name="show" onChange={handleShowPassword} />
+            <label for="show">Show</label>
           </div>
         </div>
       </form>
 
-      <div className='requirements'>
-        <ul className='requirements-list'>
-          <li className={isCorrectLength ? 'strike-out' : ''}>8-72 Characters</li>
-          <li className={hasUppercase ? 'strike-out' : ''}>1 Uppercase Character</li>
-          <li className={hasLowercase ? 'strike-out' : ''}>1 Lowercase Character</li>
-          <li className={hasNumber ? 'strike-out' : ''}>1 Number</li>
-          <li className={notEmail ? 'strike-out' : ''}>Should Not Match Your Email Address</li>
+      <div className="requirements">
+        <ul className="requirements-list">
+          <li className={isCorrectLength ? "strike-out" : ""}>
+            <p>8-72 Characters</p>
+          </li>
+          <li className={hasUppercase ? "strike-out" : ""}>
+            <p>1 Uppercase Character</p>
+          </li>
+          <li className={hasLowercase ? "strike-out" : ""}>
+            <p>1 Lowercase Character</p>
+          </li>
+          <li className={hasNumber ? "strike-out" : ""}>
+            <p>1 Number</p>
+          </li>
+          <li className={notEmail ? "strike-out" : ""}>
+            <p>Should Not Match Your Email Address</p>
+          </li>
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
 export default Form;

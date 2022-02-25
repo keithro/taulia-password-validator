@@ -1,8 +1,3 @@
-/* .form-container,
-.form-container * {
-  border: 1px solid pink;
-} */
-
 .form-container {
   width: 600px;
 }
@@ -13,10 +8,6 @@
   margin: 0 auto 20px auto;
 
 }
-
-/* .form-container label[for="password"] {
-  margin-bottom: 10px;
-} */
 
 .password-container {
   margin-top: 10px;
@@ -72,6 +63,29 @@
   width: 8px;
 }
 
-.requirements-list li.strike-out {
+/* .requirements-list li.strike-out {
   text-decoration: line-through;
+} */
+
+.requirements-list li p {
+  display: inline-block;
+  position: relative;
+}
+
+.requirements-list li p::before {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: black;
+  
+  transition: transform 400ms ease-in-out;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.requirements-list li.strike-out p::before {
+  transform: scaleX(1);
 }
