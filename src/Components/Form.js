@@ -83,7 +83,7 @@ const Form = () => {
           <input type={inputType} name='password' id='password' value={inputValue} onChange={handleInputChange}/>
 
           <div className='checkbox-container'>
-            <input type='checkbox' name='show' id='show-cb' onChange={handleShowPassword}/>
+            <input type='checkbox' name='show' onChange={handleShowPassword}/>
             <label for='show'>Show</label>
           </div>
         </div>
