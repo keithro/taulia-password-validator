@@ -1,25 +1,26 @@
-
 import React, { useEffect, useState } from 'react';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import './Form.css';
-import logo from '../logo.svg';
+import logo from '../../logo.svg';
 
 const Form = () => {
   const [ inputValue, setInputValue ] = useState('');
   const [ inputType, setInputType ] = useState('password');
   const [ email, setEmail ] = useState('');
+  const [ isError, setIsError ] = useState(false);
 
   // Make AJAX request on page load
   useEffect(() => {
-    const url = 'https://run.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813';
+    const url = 'https://un.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813';
 
     const fetchData = async () => {
       try {
         const res = await fetch(url);
         const data = await res.json();
-  
         setEmail(data.user.email);
       } catch (error) {
         console.log(error);
+        setIsError(true)
       }
     }
 
@@ -53,11 +54,6 @@ const Form = () => {
   const hasLowercase = /[a-z]/.test(inputValue);
   const hasNumber = /[0-9]/.test(inputValue);
   const notEmail = checkIfContainsEmail();
-
-  // BONUS: onBlur={handleFocusChange}
-  //  handleFocusChange = () => {
-  //   if(isValidPassord) ...confetti
-  // }
 
   return (
     <div className="form-container">
@@ -100,6 +96,8 @@ const Form = () => {
           </li>
         </ul>
       </div>
+
+      {!isError || <ErrorMessage />}
     </div>
   );
 }

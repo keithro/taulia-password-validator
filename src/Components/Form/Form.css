@@ -58,7 +58,7 @@
   content: "";
   display: inline-block;
   margin-right: 5px;
-  /* margin-bottom: 2px; */
+  margin-bottom: 1px;
   height: 8px;
   width: 8px;
 }
@@ -79,7 +79,7 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: black;
+  background: #1b1b1b;
   
   transition: transform 400ms ease-in-out;
   transform-origin: left;
@@ -88,4 +88,13 @@
 
 .requirements-list li.strike-out p::before {
   transform: scaleX(1);
+}
+
+.error-message {
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #e97171;
+  border-radius: 5px;
+  background-color: rgb(235, 172, 172);
 }
