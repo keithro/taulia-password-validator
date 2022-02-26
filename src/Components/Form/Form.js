@@ -38,6 +38,14 @@ const Form = () => {
     setInputType(type);
   }
 
+  const handleFocusChange = () => {
+    // console.log('focus lost')
+
+    if(isValidPassord) {
+      console.log('focus lost')
+    }
+  }
+
   const checkIfContainsEmail = ()=> {
     // Check only after length > 0 
     if(!inputValue.length) return false;
@@ -54,6 +62,7 @@ const Form = () => {
   const hasLowercase = /[a-z]/.test(inputValue);
   const hasNumber = /[0-9]/.test(inputValue);
   const notEmail = checkIfContainsEmail();
+  const isValidPassord = isCorrectLength && hasUppercase && hasLowercase && hasNumber && notEmail;
 
   return (
     <div className="form-container">
@@ -68,6 +77,7 @@ const Form = () => {
             id="password"
             value={inputValue}
             onChange={handleInputChange}
+            onBlur={handleFocusChange}
           />
 
           <div className="checkbox-container">
