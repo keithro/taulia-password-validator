@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import RequirementsList from '../RequirementsList/RequirementsList';
+import EmailInput from '../EmailInput/EmailInput';
+// import RequirementsList from '../RequirementsList/RequirementsList';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import './Form.css';
 import logo from '../../logo.svg';
 
 const Form = () => {
-  const [ inputValue, setInputValue ] = useState('');
-  const [ inputType, setInputType ] = useState('password');
+  // const [ inputValue, setInputValue ] = useState('');
+  // const [ inputType, setInputType ] = useState('password');
   const [ email, setEmail ] = useState('');
   const [ isError, setIsError ] = useState(false);
 
@@ -24,42 +25,44 @@ const Form = () => {
         setIsError(true)
       }
     }
-
     fetchData();
   },[]);
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  }
+  // const handleInputChange = (event) => {
+  //   setInputValue(event.target.value);
+  // }
 
-  // Change input type to toggle show/hide password
-  const handleShowPassword = (event) => {
-    const type = event.target.checked ? 'text' : 'password';
-    setInputType(type);
-  }
+  // // Change input type to toggle show/hide password
+  // const handleShowPassword = (event) => {
+  //   const type = event.target.checked ? 'text' : 'password';
+  //   setInputType(type);
+  // }
 
-  const checkIfContainsEmail = ()=> {
-    // Check only after length > 0 
-    if(!inputValue.length) return false;
+  // // Check only after length > 0 
+  // // return TRUE if does not include email or emailSubStr
+  // const checkIfContainsEmail = ()=> {
+  //   if(!inputValue.length) return false;
 
-    const end = email.indexOf('@');
-    const emailSubStr = email.slice(0,end);
+  //   const end = email.indexOf('@');
+  //   const emailSubStr = email.slice(0,end);
 
-    // return TRUE if does not include email or emailSubStr
-    return !inputValue.includes(email) && !inputValue.includes(emailSubStr);
-  }
+  //   return !inputValue.includes(email) && !inputValue.includes(emailSubStr);
+  // }
 
-  const isCorrectLength = inputValue.length >= 8 && inputValue.length <= 72;
-  const hasUppercase = /[A-Z]/.test(inputValue);
-  const hasLowercase = /[a-z]/.test(inputValue);
-  const hasNumber = /[0-9]/.test(inputValue);
-  const notEmail = checkIfContainsEmail();
+  // const isCorrectLength = inputValue.length >= 8 && inputValue.length <= 72;
+  // const hasUppercase = /[A-Z]/.test(inputValue);
+  // const hasLowercase = /[a-z]/.test(inputValue);
+  // const hasNumber = /[0-9]/.test(inputValue);
+  // const notEmail = checkIfContainsEmail();
+  // // const isValidPassord = isCorrectLength && hasUppercase && hasLowercase && hasNumber && notEmail;
 
   return (
     <div className="form-container">
-      <img src={logo} className="logo" alt="logo" />
+      <header className='input-header'>
+        <img src={logo} className="logo" alt="logo" />
+      </header>
 
-      <form>
+      {/* <form>
         <label for="password">Password</label>
         <div className="password-container">
           <input
@@ -75,15 +78,9 @@ const Form = () => {
             <label for="show">Show</label>
           </div>
         </div>
-      </form>
+      </form> */}
 
-      <RequirementsList
-        isCorrectLength={isCorrectLength}
-        hasUppercase={hasUppercase}
-        hasLowercase={hasLowercase}
-        hasNumber={hasNumber}
-        notEmail={notEmail}
-      />
+      <EmailInput email={email} />
 
       {!isError || <ErrorMessage />}
     </div>
