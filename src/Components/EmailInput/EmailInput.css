@@ -13,7 +13,6 @@
 }
 
 .password-container .checkbox-container {
-  /* padding: 8px 5px; */
   padding: .9rem .5rem;
   width: 9rem;
   background-color: #f7f7f7;
@@ -24,13 +23,12 @@
 }
 
 .checkbox-container > * {
-  /* margin-left: .3rem; */
-  margin-left: .4rem;
+  margin-left: .3rem;
+  /* margin-left: .4rem; */
 }
 
 @media screen and (min-width: 768px) {
   .password-container .checkbox-container {
-    /* width: 9rem; */
     padding: 1rem .5rem;
   }
 

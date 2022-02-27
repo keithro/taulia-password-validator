@@ -1,10 +1,11 @@
 import './ErrorMessage.css';
 
-const ErrorMessage = () => {
+const ErrorMessage = (props) => {
 
   return (
     <div className='error-message'>
-      <p>Unable to retreive email</p>
+      {/* <p>Unable to retreive email</p> */}
+      <p>{props.errorMessage}</p>
     </div>
   )
 }
