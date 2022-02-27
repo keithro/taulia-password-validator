@@ -4,12 +4,10 @@
   list-style-position: inside;
 
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .requirements-list li {
-  /* flex: 0 0 50%; */
-  flex: 1 1 300px;
   margin-top: 10px;
 }
 
@@ -23,10 +21,6 @@
   height: 8px;
   width: 8px;
 }
-
-/* .requirements-list li.strike-out {
-  text-decoration: line-through;
-} */
 
 .requirements-list li p {
   display: inline-block;
@@ -49,4 +43,15 @@
 
 .requirements-list li.strike-out p::before {
   transform: scaleX(1);
+}
+
+@media screen and (min-width: 768px) {
+  .requirements-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .requirements-list li {
+    flex: 0 0 50%;
+  }
 }

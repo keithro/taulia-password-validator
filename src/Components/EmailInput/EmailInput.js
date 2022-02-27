@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import RequirementsList from '../RequirementsList/RequirementsList';
+import './EmailInput.css'
 
 const EmailInput = (props) => {
   const { email } = props;
-
   const [ inputValue, setInputValue ] = useState('');
   const [ inputType, setInputType ] = useState('password');
   

@@ -1,0 +1,40 @@
+.password-container {
+  margin-top: 10px;
+  display: flex;
+}
+
+.password-container #password {
+  font-size: 1.6rem;
+  padding: 1rem .5rem;
+  width: 100%;
+  border: 1px solid #999999;
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+}
+
+.password-container .checkbox-container {
+  /* padding: 8px 5px; */
+  padding: .9rem .5rem;
+  width: 9rem;
+  background-color: #f7f7f7;
+  border: 1px solid #999999;
+  border-left: none;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+}
+
+.checkbox-container > * {
+  /* margin-left: .3rem; */
+  margin-left: .4rem;
+}
+
+@media screen and (min-width: 768px) {
+  .password-container .checkbox-container {
+    /* width: 9rem; */
+    padding: 1rem .5rem;
+  }
+
+  checkbox-container > * {
+    margin-left: .5rem;
+  }
+}
