@@ -1,32 +1,32 @@
-import React, { useState } from 'react';
-import RequirementsList from '../RequirementsList/RequirementsList';
-import './EmailInput.css'
+import React, { useState } from "react";
+import RequirementsList from "../RequirementsList/RequirementsList";
+import "./EmailInput.css";
 
 const EmailInput = (props) => {
   const { email } = props;
-  const [ inputValue, setInputValue ] = useState('');
-  const [ inputType, setInputType ] = useState('password');
-  
+  const [inputValue, setInputValue] = useState("");
+  const [inputType, setInputType] = useState("password");
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-  }
+  };
 
   // Change input type to toggle show/hide password
   const handleShowPassword = (event) => {
-    const type = event.target.checked ? 'text' : 'password';
+    const type = event.target.checked ? "text" : "password";
     setInputType(type);
-  }
+  };
 
-  // Check only after length > 0 
+  // Check only after length > 0
   // return TRUE if does not include email or emailSubStr
-  const checkIfContainsEmail = ()=> {
-    if(!inputValue.length) return false;
+  const checkIfContainsEmail = () => {
+    if (!inputValue.length) return false;
 
-    const end = email.indexOf('@');
-    const emailSubStr = email.slice(0,end);
+    const end = email.indexOf("@");
+    const emailSubStr = email.slice(0, end);
 
     return !inputValue.includes(email) && !inputValue.includes(emailSubStr);
-  }
+  };
 
   const isCorrectLength = inputValue.length >= 8 && inputValue.length <= 72;
   const hasUppercase = /[A-Z]/.test(inputValue);
@@ -63,7 +63,7 @@ const EmailInput = (props) => {
         notEmail={notEmail}
       />
     </>
-  )
-}
+  );
+};
 
 export default EmailInput;
