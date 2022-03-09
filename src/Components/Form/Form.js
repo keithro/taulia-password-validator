@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import EmailInput from "../EmailInput/EmailInput";
+import PasswordInput from "../PasswordInput/PasswordInput";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import "./Form.css";
 import logo from "../../logo.svg";
@@ -31,7 +31,7 @@ const Form = () => {
         <img src={logo} className="logo" alt="logo" />
       </header>
 
-      <EmailInput email={email} />
+      <PasswordInput email={email} />
 
       {!!errorMessage.length && <ErrorMessage errorMessage={errorMessage} />}
     </div>

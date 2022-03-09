@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import RequirementsList from "../RequirementsList/RequirementsList";
-import "./EmailInput.css";
+import "./PasswordInput.css";
 
-const EmailInput = (props) => {
+const PasswordInput = (props) => {
   const { email } = props;
   const [inputValue, setInputValue] = useState("");
   const [inputType, setInputType] = useState("password");
@@ -66,4 +66,4 @@ const EmailInput = (props) => {
   );
 };
 
-export default EmailInput;
+export default PasswordInput;
